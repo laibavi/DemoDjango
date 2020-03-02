@@ -1,0 +1,71 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: mysql-local
+    image: mysql:5.7
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: project_manager
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: always
+  phpmyadmin:
+    container_name: phpmyadmin-local
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    ports:
+      - "8088:80"
+    restart: always
+#  web:
+#      container_name: web-example
+#      build: .
+#      command: python manage.py runserver 0.0.0.0:8888
+#      volumes:
+#        - .:/code
+#      ports:
+#        - "8888:8888"
+#      restart: always
+
+  #  postgres:
+  #    container_name: postgres_example
+  #    image: postgres
+  #    environment:
+  #      POSTGRES_USER: admin
+  #      POSTGRES_PASSWORD: admin
+  #      POSTGRES_DATABASE: data_base
+  #      PGDATA: /data/postgres
+  #    volumes:
+  #      - postgres:/data/postgres
+  #    ports:
+  #      - "5432:5432"
+  #    networks:
+  #      - postgres
+  #    restart: always
+  #
+  #  pgadmin:
+  #    container_name: pgadmin_example
+  #    image: dpage/pgadmin4
+  #    environment:
+  #      PGADMIN_DEFAULT_EMAIL: admin
+  #      PGADMIN_DEFAULT_PASSWORD: admin
+  #    volumes:
+  #      - pgadmin:/root/.pgadmin
+  #    ports:
+  #      - "5050:80"
+  #    networks:
+  #      - postgres
+  #    restart: always
+
+  #networks:
+  #  postgres:
+  #    driver: bridge
+  #
+  #volumes:
+  #  postgres:
+  #  pgadmin:
