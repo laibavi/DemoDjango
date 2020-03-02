@@ -9,8 +9,8 @@ services:
       MYSQL_PASSWORD: 1234
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: project_manager
-    volumes:
-      - ./data:/var/lib/mysql
+#    volumes:
+#      - ./data:/var/lib/mysql
     ports:
       - "3306:3306"
     restart: always

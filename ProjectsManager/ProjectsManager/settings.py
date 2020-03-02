@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'ProjectsManager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_mysql',
+        'NAME': 'project_manager',
         'USER': 'user',
         'PASSWORD': '1234',
         # 'HOST': 'db',   # Or an IP Address that your DB is hosted on
