@@ -1,1 +1,3 @@
 /ProjectsManager/venv
+/ProjectsManager/.idea
+**/__pycache__/
