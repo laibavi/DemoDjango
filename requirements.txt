@@ -1,4 +1,4 @@
-Django
+django
 djangorestframework-jwt
 djangorestframework
 drf_yasg
