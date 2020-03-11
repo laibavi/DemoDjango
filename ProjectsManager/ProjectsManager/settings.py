@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.authentication',
     'apps.staff',
-    'apps.project'
+    'apps.project',
     'drf_yasg',
     'rest_framework',
     'silk',
