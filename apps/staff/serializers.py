@@ -63,3 +63,10 @@ class GroupsSerializer(serializers.ModelSerializer):
 
     def get_staffs(self, obj):
         return StaffsSerializer(obj._staffs, many=True).data
+
+
+class ProjectsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Projects
+        fields = ['id', "project_name"]
