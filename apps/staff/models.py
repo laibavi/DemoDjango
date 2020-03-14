@@ -15,8 +15,8 @@ class DeveloperType(models.Model):
     name = models.CharField(max_length=255)
     status = models.IntegerField(default=1, null=False)
     created_at = models.DateTimeField(auto_now_add=True, null=False)
-    updated_at = models.DateTimeField(auto_now=True)
-    deleted_at = models.DateTimeField()
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
 
 class Groups(models.Model):
@@ -24,8 +24,8 @@ class Groups(models.Model):
     description = models.TextField()
     status = models.IntegerField(default=1, null=False)
     created_at = models.DateTimeField(auto_now_add=True, null=False)
-    updated_at = models.DateTimeField(auto_now=True)
-    deleted_at = models.DateTimeField(null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
 
 class Ranks(models.Model):
@@ -33,8 +33,8 @@ class Ranks(models.Model):
     description = models.TextField()
     status = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    deleted_at = models.DateTimeField(null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
 
 class Positions(models.Model):
@@ -42,8 +42,8 @@ class Positions(models.Model):
     description = models.TextField()
     status = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    deleted_at = models.DateTimeField(null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
 
 class Staffs(models.Model):
@@ -58,8 +58,8 @@ class Staffs(models.Model):
     experience = models.FloatField()
     status = models.IntegerField(default=1, null=False)
     created_at = models.DateTimeField(auto_now_add=True, null=False)
-    updated_at = models.DateTimeField(auto_now=True)
-    deleted_at = models.DateTimeField()
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
 
 class Languages(models.Model):
@@ -71,8 +71,8 @@ class Skills(models.Model):
     skill_name = models.CharField(max_length=254, null=False)
     status = models.BooleanField(default=1, null=False)
     created_at = models.DateTimeField(auto_now_add=True, null=False)
-    updated_at = models.DateTimeField(auto_now=True)
-    deleted_at = models.DateTimeField(null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
 
 class StaffSkill(models.Model):
@@ -80,8 +80,8 @@ class StaffSkill(models.Model):
     skill_id = models.ForeignKey(Skills, on_delete=models.CASCADE)
     status = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True, null=False)
-    updated_at = models.DateTimeField(auto_now=True)
-    deleted_at = models.DateTimeField(null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
 
 
