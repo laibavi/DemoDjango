@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'apps.authentication',
     'apps.staff',
     'apps.project',
+    'apps.utils',
     'drf_yasg',
     'rest_framework',
     'silk',
