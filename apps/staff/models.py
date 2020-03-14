@@ -16,13 +16,13 @@ LANGUAGES = (
 
 class DeveloperTypes(models.Model):
     name = models.CharField(max_length=255)
-    status = models.IntegerField(default=1)
+    status = models.BooleanField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        db_table = 'developer_type'
+        db_table = 'developer_types'
 
     def __str__(self):
         return self.name
@@ -31,7 +31,7 @@ class DeveloperTypes(models.Model):
 class Groups(models.Model):
     group_name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
-    status = models.IntegerField(default=1)
+    status = models.BooleanField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(blank=True, null=True)
@@ -46,7 +46,7 @@ class Groups(models.Model):
 class Ranks(models.Model):
     rank_name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
-    status = models.IntegerField(default=1)
+    status = models.BooleanField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(blank=True, null=True)
@@ -61,7 +61,7 @@ class Ranks(models.Model):
 class Positions(models.Model):
     position_name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
-    status = models.IntegerField(default=1)
+    status = models.BooleanField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(blank=True, null=True)
@@ -74,16 +74,16 @@ class Positions(models.Model):
 
 
 class Staffs(models.Model):
-    developer_type = models.ForeignKey(DeveloperTypes, on_delete=models.CASCADE)
-    rank = models.ForeignKey(Ranks, on_delete=models.CASCADE)
-    position = models.ForeignKey(Positions, on_delete=models.CASCADE)
+    developer_type = models.ForeignKey(DeveloperTypes, on_delete=models.CASCADE, blank=True)
+    rank = models.ForeignKey(Ranks, on_delete=models.CASCADE, blank=True)
+    position = models.ForeignKey(Positions, on_delete=models.CASCADE, blank=True)
     group = models.ForeignKey(Groups, on_delete=models.CASCADE)
-    working_type_id = models.IntegerField(choices=WORKINGS, default='Full Time')
+    working_type_id = models.IntegerField(choices=WORKINGS)
     staff_code = models.CharField(max_length=20)
     full_name = models.CharField(max_length=255)
     note = models.TextField(blank=True)
     experience_from = models.DateTimeField(blank=True)
-    status = models.IntegerField(default=1)
+    status = models.BooleanField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(blank=True, null=True)
@@ -97,7 +97,7 @@ class Staffs(models.Model):
 
 class Languages(models.Model):
     staff = models.ForeignKey(Staffs, on_delete=models.CASCADE)
-    language_id = models.IntegerField(choices=LANGUAGES)
+    language_id = models.IntegerField(choices=LANGUAGES, blank=True)
 
     class Meta:
         db_table = 'languages'
@@ -105,7 +105,7 @@ class Languages(models.Model):
 
 class Skills(models.Model):
     skill_name = models.CharField(max_length=255)
-    status = models.IntegerField(default=1)
+    status = models.BooleanField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(blank=True, null=True)
@@ -120,13 +120,13 @@ class Skills(models.Model):
 class StaffSkills(models.Model):
     staff = models.ForeignKey(Staffs, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
-    status = models.IntegerField(default=1)
+    status = models.BooleanField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        db_table = 'staff_skill'
+        db_table = 'staff_skills'
 
 
 

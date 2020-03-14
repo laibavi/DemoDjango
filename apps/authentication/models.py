@@ -5,7 +5,7 @@ from apps.staff.models import Staffs
 
 class Roles(models.Model):
     role_name = models.CharField(max_length=255)
-    status = models.IntegerField(default=1)
+    status = models.BooleanField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(blank=True, null=True)
@@ -23,13 +23,13 @@ class Users(models.Model):
     email = models.EmailField()
     name = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
-    status = models.IntegerField(default=1)
+    status = models.BooleanField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        db_table = 'user'
+        db_table = 'users'
 
     def __str__(self):
         return self.name
@@ -41,4 +41,4 @@ class PasswordResets(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        db_table = 'password_reset'
+        db_table = 'password_resets'

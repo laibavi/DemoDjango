@@ -2,26 +2,6 @@ from rest_framework import serializers
 from apps.project.models import *
 
 
-class StaffProjectsSerializer(serializers.ModelSerializer):
-    actual_effort = serializers.SerializerMethodField()
-
-    def get_actual_effort(self, effort):
-        actual_effort = 0
-        for effort in self.instance:
-            actual_effort += effort
-        return actual_effort
-
-    class Meta:
-        model = StaffProjects
-        fields = ('actual_effort',)
-
-
-class PlanProjectsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PlanProjects
-        field = '__all__'
-
-
 class PlanEffortSerialiazer(serializers.Serializer):
     month = serializers.SerializerMethodField()
     plan_effort = serializers.SerializerMethodField()
@@ -34,7 +14,9 @@ class PlanEffortSerialiazer(serializers.Serializer):
         return obj.start_date.strftime("%m/%Y")
 
     def get_actual_effort(self, obj):
-        return obj._actual_effort
+        if obj._actual_effort:
+            return obj._actual_effort
+        return 0
 
     def get_plan_effort(self, obj):
         return obj.plan_effort
