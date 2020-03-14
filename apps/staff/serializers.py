@@ -54,19 +54,3 @@ class GroupsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Groups
         fields = ['id', 'group_name', 'group_lead', 'staffs']
-
-    def get_group_lead(self, obj):
-        if hasattr(obj, '_group_leader'):
-            return StaffsSerializer1(obj._group_leader[0]).data
-        else:
-            return None
-
-    def get_staffs(self, obj):
-        return StaffsSerializer(obj._staffs, many=True).data
-
-
-class ProjectsSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Projects
-        fields = ['id', "project_name"]
