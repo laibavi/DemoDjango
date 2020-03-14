@@ -18,7 +18,7 @@ PROJECT_TYPE = (
 
 
 class Partners(models.Model):
-    partner_name = models.CharField(max_length=254)
+    partner_name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     status = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -33,17 +33,17 @@ class Partners(models.Model):
 
 
 class Projects(models.Model):
-    partner_id = models.ForeignKey(Partners, on_delete=models.CASCADE)
+    partner = models.ForeignKey(Partners, on_delete=models.CASCADE)
     project_code = models.CharField(max_length=20)
-    project_name = models.CharField(max_length=254)
+    project_name = models.CharField(max_length=255)
     project_type_id = models.IntegerField(choices=PROJECT_TYPE)
-    status = models.IntegerField(choices=STATUS)
+    status_id = models.IntegerField(choices=STATUS)
     start_date = models.DateTimeField(auto_now=False)
     end_date = models.DateTimeField(auto_now=False, blank=True)
-    team_leader_id = models.OneToOneField(Staffs, on_delete=models.CASCADE, related_name="team_leader_staff")
-    leader_id = models.OneToOneField(Staffs, on_delete=models.CASCADE, related_name="leader_staff")
-    brse_id = models.OneToOneField(Staffs, on_delete=models.CASCADE, related_name="brse_staff")
-    comtor_id = models.OneToOneField(Staffs, on_delete=models.CASCADE, related_name="comtor_staff")
+    team_leader = models.OneToOneField(Staffs, on_delete=models.CASCADE, related_name="team_leader_staff")
+    leader = models.OneToOneField(Staffs, on_delete=models.CASCADE, related_name="leader_staff")
+    brse = models.OneToOneField(Staffs, on_delete=models.CASCADE, related_name="brse_staff")
+    comtor = models.OneToOneField(Staffs, on_delete=models.CASCADE, related_name="comtor_staff")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -54,8 +54,8 @@ class Projects(models.Model):
         return self.project_name
 
 
-class PlanProject(models.Model):
-    project_id = models.ForeignKey(Projects, on_delete=models.CASCADE)
+class PlanProjects(models.Model):
+    project = models.ForeignKey(Projects, on_delete=models.CASCADE)
     plan_effort = models.FloatField(blank=True)
     start_date = models.DateTimeField(auto_now=False)
     end_date = models.DateTimeField(auto_now=False, blank=True)
@@ -65,9 +65,9 @@ class PlanProject(models.Model):
         db_table = 'plan_project'
 
 
-class StaffProject(models.Model):
-    staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
-    project_id = models.ForeignKey(Projects, on_delete=models.CASCADE)
+class StaffProjects(models.Model):
+    staff = models.ForeignKey(Staffs, on_delete=models.CASCADE)
+    project = models.ForeignKey(Projects, on_delete=models.CASCADE)
     start_date = models.DateTimeField(auto_now=False)
     end_date = models.DateTimeField(auto_now=False, blank=True)
     effort = models.FloatField(blank=True)

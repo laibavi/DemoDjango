@@ -4,5 +4,5 @@ from apps.project.models import *
 
 admin.site.register(Projects)
 admin.site.register(Partners)
-admin.site.register(PlanProject)
-admin.site.register(StaffProject)
+admin.site.register(PlanProjects)
+admin.site.register(StaffProjects)
