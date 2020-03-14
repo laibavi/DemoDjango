@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 from rest_framework import viewsets, permissions
 
-from apps.project.models import Projects, StaffProject
+from apps.project.models import Projects, StaffProjects
 from apps.staff.models import Staffs, Groups
 from apps.staff.serializers import StaffsSerializer1, GroupsSerializer, StaffsSerializer
 from apps.utils.views_helper import GenericViewSet
@@ -25,7 +25,7 @@ class StaffViewSet(GenericViewSet):
             queryset=Staffs.objects.prefetch_related(
                 Prefetch(
                     'staffproject_set',
-                    queryset=StaffProject.objects.filter(
+                    queryset=StaffProjects.objects.filter(
                         start_date__month__lte=current_date.month + 1,
                         start_date__month__gte=current_date.month - 1
                     ).annotate(

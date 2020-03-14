@@ -48,7 +48,7 @@ class GenericViewSet(mixins.CreateModelMixin,
                         SerializerMixin,
                         QuerySetMixin,
                         ):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
         return serializer.save()
