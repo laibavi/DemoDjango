@@ -5,8 +5,6 @@ from apps.staff import views
 
 router = DefaultRouter()
 router.register(r'staffs', views.StaffViewSet)
-router.register(r'staffs', views.StaffViewSet1)
-router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
