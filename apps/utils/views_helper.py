@@ -7,6 +7,7 @@ from rest_framework.response import Response
 import apps.utils.response_interface as rsp
 
 
+# from apps.utils.base.permissions import IsAdminUserOrReadOnly, ReadOnly
 class SerializerMixin(object):
     action_serializers = {}
     request_serializer_class = None
@@ -40,15 +41,15 @@ class QuerySetMixin(object):
 
 
 class GenericViewSet(mixins.CreateModelMixin,
-                        mixins.ListModelMixin,
-                        mixins.RetrieveModelMixin,
-                        mixins.UpdateModelMixin,
-                        mixins.DestroyModelMixin,
-                        viewsets.GenericViewSet,
-                        SerializerMixin,
-                        QuerySetMixin,
-                        ):
-    # permission_classes = (IsAuthenticated,)
+                     mixins.ListModelMixin,
+                     mixins.RetrieveModelMixin,
+                     mixins.UpdateModelMixin,
+                     mixins.DestroyModelMixin,
+                     viewsets.GenericViewSet,
+                     SerializerMixin,
+                     QuerySetMixin,
+                     ):
+    # permission_classes = (IsAuthenticated | ReadOnly,)
 
     def perform_create(self, serializer):
         return serializer.save()
@@ -170,3 +171,4 @@ class GenericViewSet(mixins.CreateModelMixin,
         else:
             response['data'] = data
         return response
+
