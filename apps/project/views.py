@@ -1,25 +1,26 @@
 import csv
 
-from django.db.models import Prefetch, Sum, Q, Count
+from django.db.models import Prefetch, Sum, Q, Count, IntegerField
 from datetime import datetime
 
-from django.db.models.functions import ExtractMonth, ExtractYear, Concat
-from django.http import HttpResponse
+from django.db.models.functions import ExtractMonth, ExtractYear, Concat, Cast
+from django.shortcuts import HttpResponse
 from django.utils.decorators import method_decorator
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import action
 
 from .serializers import *
-from rest_framework import viewsets
 
 # Create your views here.
 from ..utils.views_helper import GenericViewSet
 
 
 @method_decorator(name='update', decorator=swagger_auto_schema(auto_schema=None))
+@method_decorator(name='destroy', decorator=swagger_auto_schema(auto_schema=None))
+# @method_decorator(name='partial_update', decorator=swagger_auto_schema(manual_parameters=[language_swagger_query]))
 class ProjectsPlansViewSet(GenericViewSet):
     queryset = Projects.objects.all()
-    serializer_class = ProjectCreateRequestSerializer
+    # serializer_class = ProjectCreateRequestSerializer
     action_serializers = {
         "create_request": ProjectCreateRequestSerializer,
         "list_response": ProjectsPlansSerializer,
@@ -42,8 +43,8 @@ class ProjectsPlansViewSet(GenericViewSet):
         )
         return super().list(request, *args, **kwargs)
 
-    def update(self, request):
+    def update(self, request, *args, **kwargs):
         pass
 
-    # def destroy(self, request):
-    #     pass
+    def destroy(self, request, *args, **kwargs):
+        pass

@@ -70,6 +70,7 @@ class ProjectCreateRequestSerializer(serializers.ModelSerializer):
 
 class ProjectCreateResponseSerializer(serializers.ModelSerializer):
     month = serializers.SerializerMethodField()
+
     class Meta:
         model = PlanProjects
         fields = ('id', 'month', 'plan_effort')
