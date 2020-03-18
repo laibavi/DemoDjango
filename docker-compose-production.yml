@@ -21,7 +21,7 @@ services:
     depends_on:
       - database
     ports:
-      - "8088:80"
+      - "8211:80"
     restart: always
 
   web:
@@ -32,7 +32,7 @@ services:
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - "8210:8000"
     depends_on:
-        - database
+      - database
     restart: always
