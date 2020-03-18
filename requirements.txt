@@ -1,0 +1,7 @@
+django
+djangorestframework-jwt
+djangorestframework
+drf_yasg
+mysqlclient
+mysql-connector-python
+django-silk
